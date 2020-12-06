@@ -12,7 +12,8 @@ def findboardingpass():
 
     for ticket in ticket_list:
         vseats = [vertical for vertical in range(1, 128)]
-        hseats = [horizontal for horizontal in range(1, 9)]
+        hseats = [horizontal for horizontal in range(0, 8)]
+        print(hseats)
 
         for letter in ticket:
 
