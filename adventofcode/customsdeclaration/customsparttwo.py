@@ -5,48 +5,32 @@ def customsdecl():
     with open('input.txt', encoding='utf-8') as file:
 	       contents = file.read()
 	       list_of_groups = contents.split('\n\n')
-    print(list_of_groups)
+#    print(list_of_groups)
 
     #Loop through groups inside list
     for group in list_of_groups:
-        number_of_respondents = 1
+        number_of_respondents = len(group.split())
 
-        #Loop through every answer given in a group
-        for answer in group:
+        #If only one respondent, all their answers are valid
+        if number_of_respondents == 1:
+            yes_by_all += len(group)
 
-            print("Input Answers: ")
-            print(answer)
+        #If multiple respondents
+        else:
+            #Split group into individual respondents
+            list_of_responses = group.split('\n')
 
-            #Find number of people who answered questions
-            if answer == '\n':
-                number_of_respondents += 1
-            else:
-                pass
+            #Loop through answers given by first respondent
+            for answer in list_of_responses[0]:
 
-        print("Number of Respondents: ")
-        print(number_of_respondents)
-        print("\n")
+                #Count answer in group and compare with number of respondents.
+                if group.count(answer) == number_of_respondents:
+                    yes_by_all += 1
 
-        for i in group:
-
-            print("Count of letter prevalence: ")
-            print(group.count(i))
-
-
-            if group.count(i) == number_of_respondents:
-                yes_by_all += 1
-                print("Valid Answer: ")
-                print(yes_by_all)
-                print("\n")
-            else:
-                print("Valid Answer: ")
-                print(yes_by_all)
-                print("\n")
-                pass
-        print("\n\n")
+                else:
+                        pass
 
     print(yes_by_all)
-
     return yes_by_all
 
 
