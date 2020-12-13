@@ -24,7 +24,6 @@ def newbagcalc(afile, targetlist):
             childpattern = '(\d+) (\w+, \w+) bag'
 
             bagsearch = re.search(parentpattern, rule)
-
             rulesentence = rule.replace(' bags contain', '').replace(' bags', '').replace(' bag', '').replace(',', '').replace('.', '')
 
             dpattern = re.compile(' [1-9] ')
