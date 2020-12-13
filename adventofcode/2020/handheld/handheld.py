@@ -17,7 +17,7 @@ def create_list_in_list(afile, var1, var2):
             lastlist.append(elements)
 
 #        print(lastlist, '\n')
-        print(lastlist[indexposition], '\n', lastlist[indexposition[0]])
+        print(lastlist[indexposition], '\n', type(lastlist[indexposition]))
         return(lastlist)
 
 def check_boot_step(anotherlist):
@@ -26,6 +26,7 @@ def check_boot_step(anotherlist):
     global previouspositions
 
     if anotherlist[indexposition[0]] == acc:
+        
         accumulator += anotherlist[indexposition[1]]
         previouspositions.append(indexposition)
         indexposition += 1
