@@ -12,12 +12,12 @@ def create_list_in_list(afile, var1, var2):
 #        print(firstlist, '\n')
 
         for element in firstlist:
-            elements = element.split(var2)
-#            print(element, '\n', elements, '\n')
+            correctelement = element[:1] + ' ' + element[3:]
+            elements = correctelement.split(var2)
             lastlist.append(elements)
 
 #        print(lastlist, '\n')
-        print(lastlist[indexposition], '\n', type(lastlist[indexposition]))
+        print(lastlist[indexposition], '\n', type(lastlist[indexposition][1]))
         return(lastlist)
 
 def check_boot_step(anotherlist):
@@ -25,15 +25,23 @@ def check_boot_step(anotherlist):
     global accumulator
     global previouspositions
 
-    if anotherlist[indexposition[0]] == acc:
-        
-        accumulator += anotherlist[indexposition[1]]
+    if anotherlist[indexposition][0] == 'acc':
         previouspositions.append(indexposition)
+
+        if anotherlist[indexposition][1] == '+':
+            accumulator += int(anotherlist[indexposition][2])
+        else:
+            accumulator -= int(anotherlist[indexposition][2])
+
         indexposition += 1
 
-    elif anotherlist[indexposition[0]] == jmp:
+    elif anotherlist[indexposition][0] == 'jmp':
         previouspositions.append(indexposition)
-        indexposition += anotherlist[indexposition[1]]
+
+        if anotherlist[indexposition][1] == '+':
+            indexposition += int(anotherlist[indexposition][2])
+        else:
+            indexposition -= int(anotherlist[indexposition][2])
 
     else:
         previouspositions.append(indexposition)
