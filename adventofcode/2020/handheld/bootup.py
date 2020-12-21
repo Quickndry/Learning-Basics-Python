@@ -24,6 +24,7 @@ def bootupseq(list_of_oneliners):
     global accumulator
 
     oneline = list_of_oneliners[indexposition]
+    print(indexposition)
     print(oneline)
 
     if len(oneline) == 4:
