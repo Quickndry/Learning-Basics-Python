@@ -20,7 +20,7 @@ def splitlist(list_of_lines):
     for i in list_of_lines:
         split_by_pattern(i)
 
-def bootupseq(oneline):
+def bootupseq(list):
     global indexposition
 
 
