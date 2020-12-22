@@ -23,31 +23,43 @@ def bootupseq(list_of_oneliners):
     global indexposition
     global accumulator
 
-    oneline = list_of_oneliners[indexposition]
-    oneline.insert(0, str(indexposition))
-    print(oneline)
+    with open("firtsequence.txt") as document:
+        lines = document.readlines()
+        firstsequence = [x.strip() for x in lines]
 
-    if len(oneline) > 4:
+        for line in firstsequence:
+            if line[1] == 'jmp':
+
+            elif line[1] == 'nop':
+
+            else:
+                
+
+    for line in firstsequence.
+    oneline = list_of_oneliners[indexposition]
+    print(indexposition, oneline)
+
+    if len(oneline) == 4:
         print(accumulator)
         return(accumulator)
 
     else:
-        if oneline[1] == 'acc':
-            if oneline[2] == '-':
-                accumulator -= int(oneline[3])
+        if oneline[0] == 'acc':
+            if oneline[1] == '-':
+                accumulator -= int(oneline[2])
                 indexposition += 1
                 oneline.append('marker')
             else:
-                accumulator += int(oneline[3])
+                accumulator += int(oneline[2])
                 indexposition += 1
                 oneline.append('marker')
 
-        elif oneline[1] == 'jmp':
-            if oneline[2] == '-':
-                indexposition -= int(oneline[3])
+        elif oneline[0] == 'jmp':
+            if oneline[1] == '-':
+                indexposition -= int(oneline[2])
                 oneline.append('marker')
             else:
-                indexposition += int(oneline[3])
+                indexposition += int(oneline[2])
                 oneline.append('marker')
 
         else:
