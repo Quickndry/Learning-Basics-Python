@@ -28,7 +28,6 @@ def bootupseq(list_of_oneliners):
     print(oneline)
 
     if len(oneline) > 4:
-        print(accumulator)
         return(accumulator)
 
     else:
@@ -50,12 +49,62 @@ def bootupseq(list_of_oneliners):
                 indexposition += int(oneline[3])
                 oneline.append('marker')
 
-        else:
+        elif online[0] == 'nop':
             indexposition += 1
             oneline.append('marker')
 
-    bootupseq(list_of_oneliners)
+        else:
+            message = 'Boot up complete'
+            return(message)
 
+        bootupseq(list_of_oneliners)
+
+def findcorruption(sequencefile, bootupfile):
+    with open(sequencefile) as document:
+        lines = document.readlines()
+        firstsequence = [x.strip() for x in lines]
+#       move the  file  converter to a new function
+#       and ensure each element is turned into a
+#       concurring list element.
+
+        for line in firstsequence:
+            modifier = int(index) + 1
+            if line[1] == 'jmp':
+                for element in bootupfile[line[0]]:
+                    modifiedline = element.replace("jmp", "nop")
+                bootupfile.insert(line[0], modifiedline)
+                oldline = bootupfile.pop(modifier)
+                result = bootupseq(bootupfile)
+                if type(result) == str:
+                    print('Boot successful. Line changed: ', line)
+
+                else:
+                    bootupfile.inster(line[0], oldline)
+                    bootupfile.pop(modifiedline)
+                    pass
+
+            elif line[1] == 'nop':
+                for element in bootupfile[line[0]]:
+                    modifiedline = element.replace("nop", "jmp")
+                bootupfile.insert(line[0], modifiedline)
+                oldline = bootupfile.pop(modifier)
+                result = bootupseq(bootupfile)
+                if type(result) == str:
+                    print('Boot successful. Line changed: ', line)
+
+                else:
+                    bootupfile.inster(line[0], oldline)
+                    bootupfile.pop(modifiedline)
+                    pass
+            else:
+                pass
+
+#first part
+#list_of_lines = splitfile("bootup.txt")
+#list_of_oneliners = splitlist(list_of_lines)
+#bootupseq(list_of_oneliners)
+
+#second part
 list_of_lines = splitfile("bootup.txt")
 list_of_oneliners = splitlist(list_of_lines)
-bootupseq(list_of_oneliners)
+findcorruption('firstsequence.txt', list_of_oneliners)
