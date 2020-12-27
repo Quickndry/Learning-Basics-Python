@@ -1,6 +1,6 @@
 indexposition = 0
 accumulator = 0
-
+ind = 0
 
 def splitfile(textfile):
     with open(textfile) as document:
@@ -68,13 +68,16 @@ def findcorruption(sequencefile, bootupfile):
 #       concurring list element.
 
         for line in firstsequence:
-            modifier = int(index) + 1
+            modifier = int(indexposition) + 1
+
             if line[1] == 'jmp':
                 for element in bootupfile[line[0]]:
                     modifiedline = element.replace("jmp", "nop")
+
                 bootupfile.insert(line[0], modifiedline)
                 oldline = bootupfile.pop(modifier)
                 result = bootupseq(bootupfile)
+
                 if type(result) == str:
                     print('Boot successful. Line changed: ', line)
 
@@ -86,9 +89,11 @@ def findcorruption(sequencefile, bootupfile):
             elif line[1] == 'nop':
                 for element in bootupfile[line[0]]:
                     modifiedline = element.replace("nop", "jmp")
+
                 bootupfile.insert(line[0], modifiedline)
                 oldline = bootupfile.pop(modifier)
                 result = bootupseq(bootupfile)
+
                 if type(result) == str:
                     print('Boot successful. Line changed: ', line)
 
@@ -99,10 +104,14 @@ def findcorruption(sequencefile, bootupfile):
             else:
                 pass
 
-#first part
-#list_of_lines = splitfile("bootup.txt")
-#list_of_oneliners = splitlist(list_of_lines)
-#bootupseq(list_of_oneliners)
+def partone(textfile):
+    list_of_lines = splitfile(textfile)
+    list_of_oneliners = splitlist(list_of_lines)
+    result = bootupseq(list_of_oneliners)
+    print(result)
+
+def parttwo()
+
 
 #second part
 list_of_lines = splitfile("bootup.txt")
