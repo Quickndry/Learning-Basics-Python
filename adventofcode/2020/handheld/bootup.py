@@ -22,7 +22,7 @@ def bootupseq(list_of_oneliners):
     #reads the line given by the global indexposition
     oneline = list_of_oneliners[indexposition]
     oneline.insert(0, str(indexposition))
-    print(oneline)
+#    print(oneline)
 
     #checks if list element oneline contains marker that shows it has been
     #looped through previously (i.e. now would be its second iteration)
@@ -51,13 +51,13 @@ def bootupseq(list_of_oneliners):
                 indexposition += int(oneline[3])
                 oneline.append('marker')
 
-        elif oneline[0] == 'nop':
+        elif oneline[1] == 'nop':
             indexposition += 1
             oneline.append('marker')
 
         else:
             message = 'Boot up complete'
-            print(accumulator)
+            print('Boot up complete. Accumulator: ', accumulator)
             return(message)
 
         #re-run the sequence until either bootup is completed or second
@@ -76,7 +76,7 @@ def findcorruption(sequencefile, list_of_oneliners):
             adapted_line = line[2:-2]
             list_of_elements = adapted_line.split('\', \'')
             list_of_list_sequence.append(list_of_elements)
-        print(type(list_of_list_sequence[0]))
+#        print(type(list_of_list_sequence[0]))
         #loop through the sequence to search for any jmp/not and replace them
         #with the other. If found, change the item in the list of oneliners and
         #run the bootup function to test if corruptio is fixed. If not, return
@@ -88,14 +88,16 @@ def findcorruption(sequencefile, list_of_oneliners):
                 modifiedline = []
                 for element in list_of_oneliners[int(line[0])]:
                     modifiedline.append(element.replace("jmp", "nop"))
-                print(modifiedline)
+#                print(modifiedline)
 
                 list_of_oneliners.insert(int(line[0]), modifiedline)
                 oldline = list_of_oneliners.pop(int(line[0]) + 1)
                 # print(oldline)
-                if list_of_oneliners[int(line[0])] == modifiedline:
-                    print("Conversion successful")
+#                if list_of_oneliners[int(line[0])] == modifiedline:
+#                    print("Conversion successful")
+
                 result = bootupseq(list_of_oneliners)
+#                print(result)
 
                 if type(result) == str:
                     print('Boot successful. Line changed: ', line)
@@ -111,12 +113,14 @@ def findcorruption(sequencefile, list_of_oneliners):
                 modifiedline = []
                 for element in list_of_oneliners[int(line[0])]:
                     modifiedline.append(element.replace("nop", "jmp"))
-                print(modifiedline)
+#                print(modifiedline)
 
                 list_of_oneliners.insert(int(line[0]), modifiedline)
                 oldline = list_of_oneliners.pop(int(line[0]) + 1)
-                print(oldline)
+#                print(oldline)
+
                 result = bootupseq(list_of_oneliners)
+#                print(result)
 
                 if type(result) == str:
                     print('Boot successful. Line changed: ', line)
