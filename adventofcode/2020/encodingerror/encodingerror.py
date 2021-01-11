@@ -1,3 +1,5 @@
+# Part one hard copy
+
 # The first step of attacking the weakness in the XMAS data is to find the first
 # number in the list (after the preamble) which is not the sum of two of the 25
 # numbers before it.
@@ -48,34 +50,8 @@ def find_encoding_error(textfile):
     else:
         print(input_list[upperlimit])
 
-def find_weakness(input_list, target):
-    global globalcounter
-
-    control_group = []
-    lowerlimit = 0
-    upperlimit = 25
-
-    lowerlimit += globalcounter
-    upperlimit += globalcounter
-
-#    control_group = input_list[lowerlimit:upperlimit]
-
-    for i in input_list[lowerlimit:upperlimit]:
-        control_group.append(int(i))
-
-    if sum(control_group) is not target:
-        globalcounter += 1
-        find_weakness(input_list, target)
-
-    else:
-        result = min(control_group) + max(control_group)
-        print(result)
 
 # create a dictionary with indexnumber of element in list as key and the sums of
 # the previous pairs of numbers as list as variable.
 
-# 258585477
-
-input_list = split_input("input.txt")
-
-find_weakness(input_list, 258585477)
+find_encoding_error("input.txt")
