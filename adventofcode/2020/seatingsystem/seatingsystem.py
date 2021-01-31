@@ -13,127 +13,84 @@
 # Find length of row (i.e. start to 'B')
 # Use this to iterate through textvariable, replacing everything according to
 # the rules.
+#
+# the try/except are only needed for first and last position in string and can
+# thus be restructured. <<!!
 
+def convert_seats(content_string, row_len):
+    placeholder = []
 
-def findseat_partone(textfile):
-    placeholder_one = []
-    placeholder_two = []
-    placeholder_three = []
+    for i, element in enumerate(content_string):
 
-    with open(textfile, encoding='utf-8') as file:
-    	content = file.read()
-    	seating_rows = contents.split('\n')
+        if element == '.':
+            placeholder.append('.')
 
-# Step 1: Convert seats using rules
-
-        for row in seating_rows:
-            newrow = []
-            for i, seat in enumerate(row):
-
-                if seat == "L":
-                    try:
-                        if row(i) & row(i - 1) & row(i + 1) == "L":
-                            newrow.append("#")
-                        else:
-                            newrow.append("L")
-                    except IndexError:
-                        try:
-                            if row(i) & row(i + 1) == "L":
-                                newrow.append("#")
-                            else:
-                                newrow.append("L")
-                        except IndexError:
-                            if row(i) & row(i - 1) == "L":
-                                newrow.append("#")
-                            else:
-                                newrow.append("L")
-
-                if seat == "#":
-                    try:
-                        if row(i - 4) & row(i - 3) & row(i - 2) & row(i - 1) == "#":
-                            newrow.append("L")
-                        else:
-                            newrow.append("#")
-
-# Step 1: Turn all empty seats into occupied seats.
-        for row in seating_rows:
-            newrow = []
-            for seat in row:
-                if seat == "L":
-                    newrow.append("#")
-                else:
-                    newrow.append(".")
-            placeholder_one.append(newrow)
-
-# Step 2.1: Itirate through each row, using the second seating rule.
-
-for row in placeholder:
-    newrow = []
-
-    for i in enumerate(len(row)):
-        try:
-            if row(i) == "L":
-                if row(i - 4) & row(i - 3) & row(i - 2) & row(i - 1) == "#":
-                    newrow.append("L")
-                elif row(i + 4) & row(i + 3) & row(i + 2) & row(i + 1) == "#":
-                    newrow.append("L")
-                elif row(i) == ".":
-                    newrow.append(".")
-                else:
-                    newrow.append("#")
-
-        except IndexError:
+        elif element == 'L':
             try:
-                if row(i) & row(i + 1) == "L":
-                    newrow.append("#")
-                elif row(i) == ".":
-                    newrow.append(".")
+                if content_string(i) & content_string(i - 1) & content_string(i + 1) == "L":
+                    placeholder.append("#")
                 else:
-                    newrow.append("L")
-
+                    placeholder.append("L")
             except IndexError:
-                if row(i) & row(i - 1) == "L":
-                    newrow.append("#")
-                elif row(i) == ".":
-                    newrow.append(".")
-                else:
-                    newrow.append("L")
-    placeholder_two.append(newrow)
-
-# Step 2.2: Itirate through each row, using the first seating rule.
-
-        for row in placeholder:
-            newrow = []
-
-            for i in enumerate(len(row)):
                 try:
-                    if row(i) & row(i - 1) & row(i + 1) == "L":
-                        newrow.append("#")
-                    elif row(i) == ".":
-                        newrow.append(".")
+                    if content_string(i) & content_string(i + 1) == "L":
+                        placeholder.append("#")
                     else:
-                        newrow.append("L")
+                        placeholder.append("L")
+                except IndexError:
+                    if content_string(i) & content_string(i - 1) == "L":
+                        placeholder.append("#")
+                    else:
+                        placeholder.append("L")
 
+        elif element == '#':
+            try:
+                sample = ''
+                sample.append(content_string(i - 1), content_string(i + 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len - 1), content_string(i + row_len + 1), content_string(i - row_len + 1), content_string(i - row_len -1))
+                occupied_seats = sample.count('#')
+                if occupied_seats > 3:
+                    placeholder.append('L')
+                else:
+                    placeholder.append('#')
+            except IndexError:
+                try:
+                    sample = ''
+                    sample.append(content_string(i + 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len + 1), content_string(i - row_len + 1))
+                    occupied_seats = sample.count('#')
+                    if occupied_seats > 3:
+                        placeholder.append('L')
+                    else:
+                        placeholder.append('#')
                 except IndexError:
                     try:
-                        if row(i) & row(i + 1) == "L":
-                            newrow.append("#")
-                        elif row(i) == ".":
-                            newrow.append(".")
+                        sample = ''
+                        sample.append(content_string(i - 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len - 1), content_string(i - row_len -1))
+                        occupied_seats = sample.count('#')
+                        if occupied_seats > 3:
+                            placeholder.append('L')
                         else:
-                            newrow.append("L")
+                            placeholder.append('#')
 
-                    except IndexError:
-                        if row(i) & row(i - 1) == "L":
-                            newrow.append("#")
-                        elif row(i) == ".":
-                            newrow.append(".")
-                        else:
-                            newrow.append("L")
-            placeholder_two.append(newrow)
+        elif element == 'B':
+            placeholder.append('B')
 
-# Step 3: Repeat the process on results of Step 2.
+    newstring = placeholder.join('')
 
-# L.LL.LL.LL
-# #.##.##.##
-# #.LL.L#.##
+    if newstring == content_string:
+        return(newstring.count('#'))
+    else:
+        convert_seats(newstring, row_len)
+
+# converts textfile to string
+def file_to_string(textfile):
+    with open(textfile, encoding='utf-8') as file:
+    	content = file.read()
+        content_string = content.replace('\n', 'B')
+        return(content_string)
+# finds rowlength from textfile
+def rowlength(textfile):
+    with open(textfile, encoding='utf-8') as file:
+    	content = file.read()
+        seating_rows = content.split('\n')
+        row_len = len(seating_rows(1)) + 1
+        return(row_len)
