@@ -14,83 +14,122 @@
 # Use this to iterate through textvariable, replacing everything according to
 # the rules.
 #
-# the try/except are only needed for first and last position in string and can
-# thus be restructured. <<!!
+# change input to the example from the readme and print the steps to see where
+# it goes wrong
+counter = 0
 
 def convert_seats(content_string, row_len):
-    placeholder = []
+	placeholder = []
+	global counter
 
-    for i, element in enumerate(content_string):
+	print("Input:\n", content_string)
 
-        if element == '.':
-            placeholder.append('.')
+	for i, element in enumerate(content_string, 1):
 
-        elif element == 'L':
-            try:
-                if content_string(i) & content_string(i - 1) & content_string(i + 1) == "L":
-                    placeholder.append("#")
-                else:
-                    placeholder.append("L")
-            except IndexError:
-                try:
-                    if content_string(i) & content_string(i + 1) == "L":
-                        placeholder.append("#")
-                    else:
-                        placeholder.append("L")
-                except IndexError:
-                    if content_string(i) & content_string(i - 1) == "L":
-                        placeholder.append("#")
-                    else:
-                        placeholder.append("L")
+		if element == '.':
+			placeholder.append('.')
 
-        elif element == '#':
-            try:
-                sample = ''
-                sample.append(content_string(i - 1), content_string(i + 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len - 1), content_string(i + row_len + 1), content_string(i - row_len + 1), content_string(i - row_len -1))
-                occupied_seats = sample.count('#')
-                if occupied_seats > 3:
-                    placeholder.append('L')
-                else:
-                    placeholder.append('#')
-            except IndexError:
-                try:
-                    sample = ''
-                    sample.append(content_string(i + 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len + 1), content_string(i - row_len + 1))
-                    occupied_seats = sample.count('#')
-                    if occupied_seats > 3:
-                        placeholder.append('L')
-                    else:
-                        placeholder.append('#')
-                except IndexError:
-                    try:
-                        sample = ''
-                        sample.append(content_string(i - 1), content_string(i + row_len), content_string(i - row_len), content_string(i + row_len - 1), content_string(i - row_len -1))
-                        occupied_seats = sample.count('#')
-                        if occupied_seats > 3:
-                            placeholder.append('L')
-                        else:
-                            placeholder.append('#')
+		elif element == 'L':
+			try:
+				if content_string[i] and content_string[i - 1] and content_string[i + 1] == "L" or "." or "B":
+					placeholder.append("#")
+				else:
+					placeholder.append("L")
+			except IndexError:
+				try:
+					if content_string[i] and content_string[i + 1] == "L" or "." or "B":
+						placeholder.append("#")
+					else:
+						placeholder.append("L")
+				except IndexError:
+					if content_string[i] and content_string[i - 1] == "L" or "." or "B":
+						placeholder.append("#")
+					else:
+						placeholder.append("L")
 
-        elif element == 'B':
-            placeholder.append('B')
+		elif element == '#':
+			try: # checks all adjacent seats
+				sample = []
+				sample.extend([content_string[i - 1], content_string[i + 1], content_string[i + row_len], content_string[i - row_len], content_string[i + row_len - 1], content_string[i + row_len + 1], content_string[i - row_len + 1], content_string[i - row_len -1]])
+				occupied_seats = sample.count('#')
+				if occupied_seats > 3:
+					placeholder.append('L')
+				else:
+					placeholder.append('#')
 
-    newstring = placeholder.join('')
+			except IndexError:
+				try: # checks all adjacent seats except those of the row above
+					sample = []
+					sample.extend([content_string[i + 1], content_string[i - 1], content_string[i + row_len], content_string[i + row_len + 1], content_string[i + row_len - 1]])
+					occupied_seats = sample.count('#')
+					if occupied_seats > 3:
+						placeholder.append('L')
+					else:
+						placeholder.append('#')
 
-    if newstring == content_string:
-        return(newstring.count('#'))
-    else:
-        convert_seats(newstring, row_len)
+				except IndexError:
+					try: # checks all adjacent seats, except those that come before
+						sample = []
+						sample.extend([content_string[i + 1], content_string[i + row_len], content_string[i + row_len + 1], content_string[i + row_len - 1]])
+						occupied_seats = sample.count('#')
+						if occupied_seats > 3:
+							placeholder.append('L')
+						else:
+							placeholder.append('#')
+
+					except IndexError:
+						try: # checks all adjacent seats except those of the row below
+							sample = []
+							sample.extend([content_string[i + 1], content_string[i - 1], content_string[i - row_len], content_string[i - row_len + 1], content_string[i - row_len - 1]])
+							occupied_seats = sample.count('#')
+							if occupied_seats > 3:
+								placeholder.append('L')
+							else:
+								placeholder.append('#')
+
+						except IndexError: # checks all adjacent seats, except the ones that come after
+							sample = []
+							sample.extend([content_string[i - 1], content_string[i - row_len], content_string[i - row_len - 1], content_string[i - row_len + 1]])
+							occupied_seats = sample.count('#')
+							if occupied_seats > 3:
+								placeholder.append('L')
+							else:
+								placeholder.append('#')
+
+		elif element == 'B':
+			placeholder.append('B')
+
+		else:
+			print('Unknown element in plan')
+
+	newstring = ''.join(placeholder)
+
+	if newstring == content_string:
+		return(newstring.count('#'))
+	else:
+		counter += 1
+		print("Iteration: ", counter, "\nNew Seat pattern: \n", newstring)
+		convert_seats(newstring, row_len)
 
 # converts textfile to string
 def file_to_string(textfile):
-    with open(textfile, encoding='utf-8') as file:
-    	content = file.read()
-        content_string = content.replace('\n', 'B')
-        return(content_string)
+	with open(textfile, encoding='utf-8') as file:
+		content = file.read()
+		content_string = content.replace('\n', 'B')
+		return(content_string)
+
 # finds rowlength from textfile
 def rowlength(textfile):
-    with open(textfile, encoding='utf-8') as file:
-    	content = file.read()
-        seating_rows = content.split('\n')
-        row_len = len(seating_rows(1)) + 1
-        return(row_len)
+	with open(textfile, encoding='utf-8') as file:
+		content = file.read()
+		seating_rows = content.split('\n')
+		row_len = len(seating_rows[1]) + 1
+		return(row_len)
+
+
+
+# Endprocess
+input_string = file_to_string('input.txt')
+length_of_row = rowlength('input.txt')
+number_of_occupied_seats = convert_seats(input_string, length_of_row)
+print(number_of_occupied_seats)
