@@ -1,20 +1,62 @@
 # CANNOT BE DELETED <-
 # CAN BE DELETED
 
-def array_diff(a, b):
-    if not a:
-        return a
-    elif not b:
-        return a
+
+
+
+def one(x):
+    lst = x
+
+    if lst:
+        if lst[0] == "x":
+            return(1 * lst[1])
+        elif lst[0] == "+":
+            return(1 + lst[1])
+        elif lst[0] == "-":
+            return(1 - lst[1])
+        else:
+            return(1 / lst[1])
     else:
-        copy = a
-        print(copy)
-        for z in b:
-            counter = 0
-            for x in a:   #  - counter
-                print(x)
-                if x == z:
-                    copy.remove(x)
-                    counter += 1
-        print(copy)
-        return copy
+        return(1)
+        
+def two(x):
+    lst = x
+    if lst:
+        if lst[0] == "x":
+            return(2 * lst[1])
+        elif lst[0] == "+":
+            return(2 + lst[1])
+        elif lst[0] == "-":
+            return(2 - lst[1])
+        else:
+            return(2 / lst[1])
+    else:
+        return(2)
+
+
+def plus(x):
+    plus = []
+    plus.append('+')
+    plus.append(x)
+    return(plus)
+
+def minus(x): 
+    minus = []
+    minus.append('-')
+    minus.append(x)
+    return(minus)
+
+def times(x): 
+    times = []
+    times.append('x')
+    times.append(x)
+    return(times)
+
+def divided_by(x): 
+    divided = []
+    divided.append('/')
+    divided.append(x)
+    return(divided)
+
+print(one(times(two)))
+print(two(minus(one)))
