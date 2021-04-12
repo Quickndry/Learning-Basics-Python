@@ -27,7 +27,7 @@ def joltage_difference(inputlist):
 
 
     for x in transmitters:
-        if int(x) == joltage + 1:
+        if x == joltage + 1:
             joltage = x
             one += 1
 
@@ -35,7 +35,7 @@ def joltage_difference(inputlist):
             joltage = x
             two += 1
 
-        elif int(x) == joltage + 3:
+        elif x == joltage + 3:
             joltage = x
             three += 1
 
@@ -44,7 +44,7 @@ def joltage_difference(inputlist):
 
     four = three + 1
     result = one * four
-    print(result)
+    print("Difference 1: {} \n Difference 3: {} \n Result: {}".format(one, three, result))
 
 inputlist = split_input("input.txt")
 joltage_difference(inputlist)
