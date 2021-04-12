@@ -15,7 +15,7 @@ def get_pins(observed):
         9:[6,8,9]
         }
 
-    # Get list of lengths of value
+    # Get list of lengths of value, i.e. how many possible other digits exist
     lengths = []
     for digit in observed:
         lengths.append(len(buttonDic[digit]))
@@ -26,9 +26,12 @@ def get_pins(observed):
         totalPossibilities = totalPossibilities * x
     
     # Find out how many pins contain the specific possible digit
+    # REWRITE, AS ONLY [0] IS USED
     digitOccurence = []
+    temp = totalPossibilities
     for x in lengths:
-        digitOccurence.append(math.floor(totalPossibilities / x))
+        digitOccurence.append(math.floor(temp / x))
+        temp = math.floor(temp / x)
 
     # Create list of sublists whereby the sublists are different pin possibilities
     # The sublists are filled with the possible digits of the first digit of the pin
@@ -42,11 +45,12 @@ def get_pins(observed):
     # Fill the sublists with the remaining digit possibilities
     for digit in observed[1:-1]:
         possibilities = buttonDic[digit]
-        nStart = 0
-        nEnd = math.floor(digitOccurence[digit-2] / lengths[digit-1])
+        # Next one needs to take the nEnd instead of digitOccurence[0]
         counter = 0
 
         for val in possibilities:
+            nStart = 0
+            nEnd = math.floor(digitOccurence[0] / lengths[digit-1]) 
             nStart += counter
             nEnd += counter
             
@@ -64,6 +68,6 @@ def get_pins(observed):
 
     return possiblePins
 
-sample = [1,2,3,4]
+sample = [1,2,3]
 example = get_pins(sample)
 print(example)
