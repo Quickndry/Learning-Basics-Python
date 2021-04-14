@@ -19,11 +19,15 @@ def get_pins(observed):
     lengths = []
     for digit in observed:
         lengths.append(len(buttonDic[digit]))
-    
+
+    print("Lengths: ", lengths)
+
     # Multiply the list of lengths to obtain total number of pin possibilities
     totalPossibilities = 1
     for x in lengths:
         totalPossibilities = totalPossibilities * x
+    
+    print("Total Possibilities: ", totalPossibilities)
     
     # Find out how many pins contain the specific possible digit
     # REWRITE, AS ONLY [0] IS USED
@@ -32,6 +36,8 @@ def get_pins(observed):
     for x in lengths:
         digitOccurence.append(math.floor(temp / x))
         temp = math.floor(temp / x)
+
+    print("Digit Occurence: ", digitOccurence)
 
     # Create list of sublists whereby the sublists are different pin possibilities
     # The sublists are filled with the possible digits of the first digit of the pin
@@ -42,29 +48,39 @@ def get_pins(observed):
         for i in range(0, digitOccurence[0]):
             possiblePins.append(vallist)
 
+    print("First digit list: ", possiblePins)
+
     # Fill the sublists with the remaining digit possibilities
-    for digit in observed[1:-1]:
+    for digit in observed[1:]:
         possibilities = buttonDic[digit]
         # Next one needs to take the nEnd instead of digitOccurence[0]
-        counter = 0
+        scounter = 0
+
+        print("This is for Digit: ", digit, "\nThis are its possibilities: ", possibilities)
 
         for val in possibilities:
+            counter = 0
             nStart = 0
-            nEnd = math.floor(digitOccurence[0] / lengths[digit-1]) 
-            nStart += counter
-            nEnd += counter
+            nEnd = digitOccurence[observed.index(digit)]
+            nStart += scounter
+            nEnd += scounter
+
+            print("The following is for value: ", val)
             
-            for x in range(0,lengths[digit-2]):
+            for x in range(0,lengths[observed.index(digit-1)]):
+                nStart += counter
+                nEnd += counter 
+
+                print("Currently in loop: ", x)
+                print(nStart)
+                print(nEnd)
+
                 for i in range(nStart, nEnd):
-                    possiblePins[i-1].append(val)
-                nStart += digitOccurence[digit-2]
-                nEnd += digitOccurence[digit-2]
-            nStart = 0
-            nEnd = math.floor(digitOccurence[digit-2] / lengths[digit-1])
-            counter += math.floor(digitOccurence[digit-2] / lengths[digit-1])
+                    possiblePins[i].append(val)
+                
+                counter = digitOccurence[observed.index(digit-1)]
 
-
-
+            scounter += digitOccurence[observed.index(digit)]
 
     return possiblePins
 
