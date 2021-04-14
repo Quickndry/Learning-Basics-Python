@@ -61,7 +61,7 @@ def get_pins(observed):
         for val in possibilities:
             counter = 0
             nStart = 0
-            nEnd = digitOccurence[observed.index(digit)]
+            nEnd = digitOccurence[observed.index(digit)] - 1
             nStart += scounter
             nEnd += scounter
 
