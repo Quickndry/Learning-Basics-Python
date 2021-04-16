@@ -36,38 +36,33 @@ def get_pins(observed):
         digitOccurence.append(math.floor(temp / x))
         temp = math.floor(temp / x)
 
+    revdigitOccurence = digitOccurence[::-1]
+
     print("Digit Occurence: ", digitOccurence)
 
-    # Create list of sublists whereby the sublists are different pin possibilities
-    # The sublists are filled with the possible digits of the first digit of the pin
-    possiblePins = []
-    firstpossibilities = buttonDic[observed[0]]
-    for val in firstpossibilities:
-        vallist = [val] # creates a series of sublists were many share the same ID - FIXIT
-        for i in range(0, digitOccurence[0]):
-            possiblePins.append(vallist)
+    possiblePins = [[] for i in range(0, totalPossibilities)]
 
     print("First digit list: ", possiblePins)
     print("\nThese are the object IDs of the first to sublists:\n", id(possiblePins[0]), "\n", id(possiblePins[1]))
 
     # Fill the sublists with the remaining digit possibilities
-    for digit in observed[1:]:
+    for digit in observed:
         possibilities = buttonDic[digit]
         # Next one needs to take the nEnd instead of digitOccurence[0]
         scounter = 0
 
-        print("This is for Digit: ", digit, "\nThis are its possibilities: ", possibilities)
+        print("These for Digit: ", digit, "\nThis are its possibilities: ", possibilities)
 
         for val in possibilities:
             counter = 0
             nStart = 0
-            nEnd = digitOccurence[observed.index(digit)] - 1
+            nEnd = digitOccurence[observed.index(digit)] 
             nStart += scounter
             nEnd += scounter
 
             print("\nThe following is for value: ", val)
             
-            for x in range(0,lengths[observed.index(digit-1)]):
+            for x in range(0,revdigitOccurence[observed.index(digit)]):
                 nStart += counter
                 nEnd += counter 
 
@@ -77,7 +72,7 @@ def get_pins(observed):
                 for i in range(nStart, nEnd):
                     possiblePins[i].append(val)
                 
-                counter = digitOccurence[observed.index(digit-1)]
+                counter = digitOccurence[observed.index(digit)-1]
 
             scounter += digitOccurence[observed.index(digit)]
 
