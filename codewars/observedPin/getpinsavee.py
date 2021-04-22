@@ -1,3 +1,5 @@
+# Notes for future:
+
 import math
 def get_pins(observed):
 
@@ -45,8 +47,9 @@ def get_pins(observed):
 
     # Create list of loops
     numberOfLoops =[1]
-    for digit in observedList:
-        placeholder = numberOfLoops[observedList.index(digit)] * lengths[observedList.index(digit)]
+    for i in range(len(observedList)):
+        placeholder = numberOfLoops[i] * lengths[i]
+        print("\nThis is i: ", i, "\nThis is part a: ", numberOfLoops[i], "\nThis is part b: ",  lengths[i], "\nThis is the placeholder for loops: ", placeholder)
         numberOfLoops.append(placeholder)
     numberOfLoops = numberOfLoops[:len(observedList)]
 
@@ -58,38 +61,35 @@ def get_pins(observed):
     print("\nThese are the object IDs of the first to sublists:\n", id(possiblePins[0]), "\n", id(possiblePins[1]))
 
     # Fill the sublists with the remaining digit possibilities
-    for digit in observedList:
-        possibilities = buttonDic[digit]
+    for i in range(len(observedList)):
+        possibilities = buttonDic[observedList[i]]
         # Next one needs to take the nEnd instead of digitOccurence[0]
         scounter = 0 # To find the startindex when looping through values
 
-        print("These for Digit: ", digit, "\nThis are its possibilities: ", possibilities)
+        print("These for Digit: ", observedList[i], "\nThis are its possibilities: ", possibilities)
 
         for val in possibilities:
             counter = 0 # To find the startindex when looping through range of possibilities
             nStart = 0
-            nEnd = digitOccurence[observedList.index(digit)] 
+            nEnd = digitOccurence[i] 
             nStart += scounter
             nEnd += scounter
 
             print("\nThe following is for value: ", val)
             
-            for x in range(0,numberOfLoops[observedList.index(digit)]):
+            for x in range(0,numberOfLoops[i]):
                 nStart += counter
                 nEnd += counter 
 
                 print("Currently in loop: ", x + 1)
                 print("Start: ", nStart, "\nEnd: ", nEnd)
 
-                for i in range(nStart, nEnd):
-                    possiblePins[i].append(val)
+                for x in range(nStart, nEnd):
+                    possiblePins[x].append(val)
                 
-                counter = digitOccurence[observedList.index(digit)-1]
+                counter = digitOccurence[i-1]
 
-            scounter += digitOccurence[observedList.index(digit)]
-            # Problem lies with the fact that index() only finds first occurence
-            # For every loop through a digit, delete previous digit and adapt
-            # all other called lists (i.e. remove previous value)
+            scounter += digitOccurence[i]
 
     finalResult = []
     for pin in possiblePins:
@@ -98,6 +98,6 @@ def get_pins(observed):
 
     return finalResult
 
-sample = "11"
+sample = "007"
 example = get_pins(sample)
 print(example)
