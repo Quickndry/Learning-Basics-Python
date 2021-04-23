@@ -1,0 +1,43 @@
+Element:  s 
+Word:  ['x', 'n', 'j', 'q', 'n', 'z', 'k', 'j', 'p']
+Scrambled:  ['n', 'u', 'q', 'z', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'j', 'a', 'x', 'a', 't', 'w', 'x']
+
+Element:  n
+Word:  ['x', 'j', 'q', 'n', 'z', 'k', 'j', 'p']
+Scrambled:  ['u', 'q', 'z', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'j', 'a', 'x', 'a', 't', 'w', 'x']
+
+Element:  q
+Word:  ['x', 'j', 'n', 'z', 'k', 'j', 'p']
+Scrambled:  ['u', 'z', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'j', 'a', 'x', 'a', 't', 'w', 'x']
+
+Element:  z
+Word:  ['x', 'j', 'n', 'k', 'j', 'p']
+Scrambled:  ['u', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'j', 'a', 'x', 'a', 't', 'w', 'x']
+
+Element:  j
+Word:  ['x', 'n', 'k', 'j', 'p']
+Scrambled:  ['u', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'a', 'x', 'a', 't', 'w', 'x']
+
+Element:  x
+Word:  ['n', 'k', 'j', 'p']
+Scrambled:  ['u', 'i', 'a', 'i', 'g', 'b', 'i', 's', 'e', 'a', 'a', 't', 'w', 'x']
+
+Missing Numbers:  1
+
+Missing Numbers:  2
+
+Missing Numbers:  3
+
+Missing Numbers:  4
+
+Missing Numbers:  5
+
+Missing Numbers:  6
+
+Missing Numbers:  7
+
+Missing Numbers:  8
+
+Missing Numbers:  9
+
+Missing Numbers:  10
