@@ -1,6 +1,9 @@
 # Third version - still too slow
 
 def scramble(s1, s2):
+    if len(s2) > len(s1):
+        return False
+
     scrambledlist = list(s1)
     targetword = list(s2)
 
@@ -8,8 +11,7 @@ def scramble(s1, s2):
         if x not in scrambledlist:
             return False
         else:
-            scrambledList.remove(x)
-            pass
+            scrambledlist.remove(x)
     
     return True
 
