@@ -1,3 +1,5 @@
+# Fourth version - still too slow
+
 def scramble(s1, s2):
     scrambledlist = list(s1)
     targetword = list(s2)
