@@ -1,27 +1,13 @@
+# Works but is too slow.
+from itertools import permutations
+
 def next_bigger(n):
+    combinations = [''.join(p) for p in permutations(str(n))]
+    possibilities = [int(combi) for combi in combinations if int(combi) > n]
 
-    digits = [x for x in str(n)]
+    if len(possibilities) > 0:
+        return(int(min(possibilities)))
+    else:
+        return(-1)
 
-    counter = len(digits)
-
-    
-
-    while counter > 0:
-
-        safecopy = digits
-
-        safecopy.insert(counter - 2, safecopy.pop(counter - 1))
-
-        safecopystring = ''.join([str(elem) for elem in safecopy])
-
-        if int(safecopystring) > n:
-
-            return int(safecopystring)
-
-        else:
-
-            pass
-
-        counter -= 1
-
-    return(-1)
+print(next_bigger(513))
