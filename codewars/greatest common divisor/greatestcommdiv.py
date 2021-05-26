@@ -1,11 +1,11 @@
+# Works fine
 def mygcd(x, y):
-    if x > y:
-        while x > y:
+    while x != y:
+        if x > y:
             x = x - y
-        return x
-    elif y > x:
-        while y > x:
+        elif y > x:
             y = y - x
-        return y
-    else:
-        return 1
+        if x < 0 or y < 0:
+            return 1
+    return x
+        
