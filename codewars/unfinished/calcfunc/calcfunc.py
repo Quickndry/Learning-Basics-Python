@@ -22,18 +22,55 @@ def zero(x):
     else:
         return 0
 
-def one(): 
-def two(): 
+def one():
+        if x:
+
+    else:
+        return 1
+def two():
+        if x:
+        
+    else:
+        return 2
 def three(): 
+        if x:
+        
+    else:
+        return 3
 def four(): 
+        if x:
+        
+    else:
+        return 4
 def five(): 
+        if x:
+        
+    else:
+        return 5
 def six(): 
+        if x:
+        
+    else:
+        return 6
 def seven(): 
+        if x:
+        
+    else:
+        return 7
 def eight(): 
+        if x:
+        
+    else:
+        return 8
 def nine(): 
+        if x:
+        
+    else:
+        return 9
 
 def plus(x):
     
-def minus(x): 
+def minus(x):
+    return 
 def times(x): 
 def divided_by(x): 

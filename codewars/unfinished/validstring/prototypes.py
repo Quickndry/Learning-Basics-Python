@@ -1,4 +1,4 @@
-
+# 1.0
 def valid_word(seq, word):
     print('Seq: ', seq, '\nword: ', word)
 
@@ -24,7 +24,8 @@ def valid_word(seq, word):
     else:
         return False
 
-# Prototype
+
+# 2.0
 def valid_word_prototype(seq, word):
     print("Seq: ", seq, "\nWord: ", word)
     lenct = 0
@@ -42,3 +43,33 @@ def valid_word_prototype(seq, word):
         return False
 
 print(valid_word(['ab', 'a', 'bc'], 'abc'))
+
+
+
+# 3.0
+def valid_word(seq, word):
+    print("Seq: ", seq, "\nWord: ", word)
+    newWord = ''
+    testlist = []
+    if len(seq) == 0:
+        return False
+    for x in seq:
+        if x in word:
+            newWord += x * word.count(x)
+
+    for x in newWord:
+        if newWord.count(x) >= word.count(x):
+            testlist.append("yes")
+        else:
+            testlist.append("no")
+    for x in set(word):
+        if newWord.count(x) >= word.count(x):
+            testlist.append("yes")
+        else:
+            testlist.append("no")
+
+    for x in testlist:
+        if x == "no":
+            return False
+
+    return True
