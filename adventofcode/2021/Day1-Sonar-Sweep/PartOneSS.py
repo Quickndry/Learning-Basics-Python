@@ -23,4 +23,4 @@ def sonarsweep(txtfile):
   increased -= 1
   print(increased)
 
-sonarsweep("PartOneInput.txt")
+sonarsweep("depths.txt")
