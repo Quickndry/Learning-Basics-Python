@@ -63,10 +63,11 @@ def american_bingo(txtfile):
   
   # loop through numbers and dictionary, removing each drawn
   # number from its list and checking if the list is empty,
-  # if it is, it takes the first 5 lists inside the currently
-  # looped through dictionary value and recombine them to get
-  # the grid of he leftover digits. These are then converted 
-  # into the final score
+  # it is marked with a "BINGO" string, increasing the list
+  # length, so that grids that have already won, can be skipped
+  # it then takes the frst five lists of the dictionary value
+  # i.e. the "rows" and recombines them to create a new grid
+  # string and adds this string to bingo_success list
   for numbers in numbers_drawn_list:
     for i in range(participants):
       for x in range(11):
