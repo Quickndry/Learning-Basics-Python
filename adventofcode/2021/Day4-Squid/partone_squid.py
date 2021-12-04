@@ -60,9 +60,12 @@ def american_bingo(txtfile):
   # convert numbers drawn into list of individual elements
   numbers_drawn_list = numbers_drawn.split(",")
   
-  # loop through numbers and dictionary, removing each
-  # drawn number from its list and checking if the list
-  # is empty
+  # loop through numbers and dictionary, removing each drawn
+  # number from its list and checking if the list is empty,
+  # if it is, it takes the first 5 lists inside the currently
+  # looped through dictionary value and recombine them to get
+  # the grid of he leftover digits. These are then converted 
+  # into the final score
   for numbers in numbers_drawn_list:
     for i in range(participants):
       for x in range(11):
@@ -70,7 +73,17 @@ def american_bingo(txtfile):
           if number == numbers:
             bingo_dictionary[i][x].remove(number)
             if len(bingo_dictionary[i][x]) == 0:
-              print(bingo_dictionary[i])
+              leftover_grid = bingo_dictionary[i][0] + bingo_dictionary[i][1] + bingo_dictionary[i][2] + bingo_dictionary[i][3] + bingo_dictionary[i][4]
               
+              leftover_grid_integer = [int(leftover) for leftover in leftover_grid]
+              
+              leftover_sum = sum(leftover_grid_integer)
+              
+              final_score = leftover_sum * int(numbers)
+              print(final_score)
+              return final_score
+            
+  
+  
     
 american_bingo("input.txt")
