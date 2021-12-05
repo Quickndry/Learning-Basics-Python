@@ -6,7 +6,7 @@ def hydro(txtfile):
   input_list = input_string.split("\n")
   input_file.close()
 
-  print("Input: ", input_list)
+  #print("Input: ", input_list)
   hydrovents = []
   counter = 0
   
@@ -23,17 +23,29 @@ def hydro(txtfile):
     for pair in pairs:
       temporary_pairs = pair.split(",")
       coordinates.append(temporary_pairs)
-      
+
+    print("Coordinates: ", coordinates)
+    print("Coordinate 0: ", coordinates[0][0], " + ", coordinates[1][0])
+    print("Coordinate 1: ", coordinates[0][1], " + ", coordinates[1][1], "\n")
+
     if coordinates[0][0] == coordinates[1][0]:
-      for i in range(int(coordinates[0][1]), int(coordinates[1][1])):
-        temporary_pair = str(coordinates[0][0]) + str(i)
+      rangeend = int(coordinates[1][1]) + 1
+      
+      for i in range(int(coordinates[0][1]), rangeend):
+        temporary_pair = str(coordinates[0][0]) + "," + str(i)
+        print("Temp pair: ", temporary_pair)
         hydrovents.append(temporary_pair)
         
     elif coordinates[0][1] == coordinates[1][1]:
-      for i in range(int(coordinates[0][0]), int(coordinates[1][0])):
-        temporary_pair = str(coordinates[0][1]) + str(i)
+      rangeend = int(coordinates[1][0]) + 1
+      
+      for i in range(int(coordinates[0][0]), rangeend):
+        temporary_pair = str(i) + "," + str(coordinates[0][1])
+        print("Temp pair: ", temporary_pair)
+
         hydrovents.append(temporary_pair)
-  
+        
+    print("\n")
   hydrovents_set = set(hydrovents)
   
   for vent in hydrovents_set:
