@@ -24,11 +24,15 @@ def hydro(txtfile):
       
     if coordinates[0][0] == coordinates[1][0]:
       for i in range(coordinates[0][1], coordinates[1][1]):
-        temporary_pair = [coordinates[0][0], i]
-        hydrovents.
+        temporary_pair = str(coordinates[0][0]) + str(i)
+        hydrovents.append(temporary_pair)
         
     elif coordinates[0][1] == coordinates[1][1]:
       for i in range(coordinates[0][0], coordinates[1][0]):
-
+        temporary_pair = str(coordinates[0][1]) + str(i)
+        hydrovents.append(temporary_pair)
     
+    for vent in hydrovents:
+      how_many = hydrovents.count(vent)
+      if how_many == 
       
