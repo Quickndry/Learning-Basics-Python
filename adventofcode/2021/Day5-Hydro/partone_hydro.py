@@ -6,7 +6,9 @@ def hydro(txtfile):
   input_list = input_string.split("\n")
   input_file.close()
 
+  print("Input: ", input_list)
   hydrovents = []
+  counter = 0
   
   # loop through coordinate strings to create coordinate 
   # pairs e.g. ("0,1", "2,1") and then loop through pairs
@@ -23,16 +25,23 @@ def hydro(txtfile):
       coordinates.append(temporary_pairs)
       
     if coordinates[0][0] == coordinates[1][0]:
-      for i in range(coordinates[0][1], coordinates[1][1]):
+      for i in range(int(coordinates[0][1]), int(coordinates[1][1])):
         temporary_pair = str(coordinates[0][0]) + str(i)
         hydrovents.append(temporary_pair)
         
     elif coordinates[0][1] == coordinates[1][1]:
-      for i in range(coordinates[0][0], coordinates[1][0]):
+      for i in range(int(coordinates[0][0]), int(coordinates[1][0])):
         temporary_pair = str(coordinates[0][1]) + str(i)
         hydrovents.append(temporary_pair)
-    
-    for vent in hydrovents:
-      how_many = hydrovents.count(vent)
-      if how_many == 
+  
+  hydrovents_set = set(hydrovents)
+  
+  for vent in hydrovents_set:
+    how_many = hydrovents.count(vent)
+    if how_many > 1:
+      counter += 1
+  print(counter)
+  return counter
+
+hydro("input.txt")
       
