@@ -23,44 +23,68 @@ def hydro(txtfile):
       temporary_pairs = pair.split(",")
       coordinates.append(temporary_pairs)
 
-    # if diagonal case 
-    if abs(coordinates[0][0] - coordinates[0][1]) == abs(coordinates[1][0] - coordinates[1][1]):
+    # most common diagonal case 
+    if abs(int(coordinates[0][0]) - int(coordinates[0][1])) == abs(int(coordinates[1][0]) - int(coordinates[1][1])):
+      # add special semi double diagonal case e.g. "5,5" & "2,8"
       
       # special double diagonal case
-      if abs(coordinates[0][0] - coordinates[0][1]) == 0:
-        if int(coordinates[0][0]) < int(coordinates[0][1]):
+      if abs(int(coordinates[0][0]) - int(coordinates[0][1])) == 0:
+        if int(coordinates[0][0]) < int(coordinates[1][0]):
           rangeend= int(coordinates[0][1]) + 1
           for i in range(int(coordinates[0][0]), rangeend):
             temporary_pair = str(i) + "," + str(i)
             hydrovents.append(temporary_pair)
             
-        elif int(coordinates[0][0]) > int(coordinates[0][1]):
+        elif int(coordinates[0][0]) > int(coordinates[1][0]):
           rangeend= int(coordinates[0][0]) + 1
           for i in range(int(coordinates[0][1]), rangeend):
             temporary_pair = str(i) + "," + str(i)
             hydrovents.append(temporary_pair)
       
-      # normal diagonal cases
-      elif int(coordinates[0][0]) < int(coordinates[0][1]):
-        rangeend= int(coordinates[0][1]) + 1
-        x = int(coordinates[0][0])
-        y = int(coordinates[0][1])
-        for i in range(coordinates[0][0], rangeend):
-          x += 1
-          y -= 1
-          temporary_pair = str(x) + "," + str(y)
-          hydrovents.append(temporary_pair)
-          
-      elif int(coordinates[0][0]) > int(coordinates[0][1]):
-        rangeend= int(coordinates[0][0]) + 1
-        x = int(coordinates[0][0])
-        y = int(coordinates[0][1])
-        for i in range(coordinates[0][1], rangeend):
-          x -= 1
-          y += 1
-          temporary_pair = str(x) + "," + str(y)
-          hydrovents.append(temporary_pair)
+      # special diagonal cases
+      elif coordinates[0][0] == coordinates[1][1]: 
+        if int(coordinates[0][0]) < int(coordinates[0][1]):
+          rangeend= int(coordinates[0][1]) + 1
+          x = int(coordinates[0][0])
+          y = int(coordinates[0][1])
+          for i in range(coordinates[0][0], rangeend):
+            temporary_pair = str(x) + "," + str(y)
+            x += 1
+            y -= 1
+            hydrovents.append(temporary_pair)
 
+        elif int(coordinates[0][0]) > int(coordinates[0][1]):
+          rangeend= int(coordinates[0][0]) + 1
+          x = int(coordinates[0][0])
+          y = int(coordinates[0][1])
+          for i in range(int(coordinates[0][1]), rangeend):
+            temporary_pair = str(x) + "," + str(y)
+            x -= 1
+            y += 1
+            hydrovents.append(temporary_pair)
+
+         # normal diagonal cases
+      else:
+        if int(coordinates[0][0]) < int(coordinates[1][0]):
+          rangeend= abs(int(coordinates[0][0]) - int(coordinates[1][0])) + 1
+          x = int(coordinates[0][0])
+          y = int(coordinates[0][1])
+          for i in range(0, rangeend):
+            temporary_pair = str(x) + "," + str(y)
+            x += 1
+            y += 1
+            hydrovents.append(temporary_pair)
+
+        elif int(coordinates[0][0]) > int(coordinates[1][0]):
+          rangeend= abs(int(coordinates[0][0]) - int(coordinates[1][0])) + 1
+          x = int(coordinates[0][0])
+          y = int(coordinates[0][1])
+          for i in range(0, rangeend):
+            temporary_pair = str(x) + "," + str(y)
+            x -= 1
+            y -= 1
+            hydrovents.append(temporary_pair)
+            
     # if horizontal
     elif coordinates[0][0] == coordinates[1][0]:
       if int(coordinates[0][1]) < int(coordinates[1][1]):
