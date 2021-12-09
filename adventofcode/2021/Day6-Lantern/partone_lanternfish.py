@@ -1,3 +1,4 @@
+# Set day to targetday - 1 (e.g. if you want the result for 80 days, set 79)
 def first_step(txtfile):
   input_file = open(txtfile, "r")
   input_string = input_file.read()
