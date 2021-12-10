@@ -1,5 +1,52 @@
-
-
+def basin(list_of_strings, list_of_coordinates, list_of_dupes, size):
+	if list_of_coordinates is empty:
+		return size
+	else:
+		new_list_coordinates = []
+		for i in range(len(list_of_coordinates)):
+			coordinates = list_of_coordinates[i]
+			above = list_of_strings[coordinates[0] - 1][coordinates[1]]
+			below = list_of_strings[coordinates[0] + 1][coordinates[1]]
+			prior = list_of_strings[coordinates[0]][coordinates[1] - 1]]
+			after = list_of_strings[coordinates[0]][coordinates[1] + 1]]
+			
+			if above == 9:
+				pass
+			else:
+				size += 1
+				str_index = coordinates[0] - 1
+				char_index = coordinates[1]
+				coordinates = [str_index, char_index]
+				new_list_coordinates.append
+			
+			if below == 9:
+				pass
+			else:
+				size += 1
+				str_index = coordinates[0] + 1
+				char_index = coordinates[1]
+				coordinates = [str_index, char_index]
+				new_list_coordinates.append
+			
+			if prior == 9:
+				pass
+			else:
+				size += 1
+				str_index = coordinates[0]
+				char_index = coordinates[1] - 1
+				coordinates = [str_index, char_index]
+				new_list_coordinates.append
+			
+			if after == 9:
+				pass
+			else:
+				size += 1
+				str_index = coordinates[0]
+				char_index = coordinates[1] + 1
+				coordinates = [str_index, char_index]
+				new_list_coordinates.append
+		
+		return basin(list_of_strings, new_list_coordinates, list_of_dupes, size)
 def smoke(txtfile):
 	input_file = open(txtfile, "r")
 	input_strings = input_file.read()
@@ -17,9 +64,9 @@ def smoke(txtfile):
 				try:
 					if int(digit) < int(string[i-1]) and int(digit) < int(string[i+1]) and int(digit) < int(next_string[i]):
 						string_index = string_list.index(string)
-            character_index = string.index(digit)
-            coordinates = [[string_index, character_index]]
-            basin_size = 
+						character_index = string.index(digit)
+						coordinates = [[string_index, character_index]]
+						basin_size = 
             
 				except IndexError:
 					try:
