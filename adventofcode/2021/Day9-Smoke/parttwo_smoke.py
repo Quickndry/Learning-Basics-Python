@@ -1,5 +1,5 @@
 def basin(list_of_strings, list_of_coordinates, list_of_dupes, size):
-	if list_of_coordinates is empty:
+	if len(list_of_coordinates) == 0:
 		return size
 	else:
 		new_list_coordinates = []
@@ -7,52 +7,69 @@ def basin(list_of_strings, list_of_coordinates, list_of_dupes, size):
 			coordinates = list_of_coordinates[i]
 			above = list_of_strings[coordinates[0] - 1][coordinates[1]]
 			below = list_of_strings[coordinates[0] + 1][coordinates[1]]
-			prior = list_of_strings[coordinates[0]][coordinates[1] - 1]]
-			after = list_of_strings[coordinates[0]][coordinates[1] + 1]]
+			prior = list_of_strings[coordinates[0]][coordinates[1] - 1]
+			after = list_of_strings[coordinates[0]][coordinates[1] + 1]
 			
-			if above == 9:
+			if above in list_of_dupes:
 				pass
 			else:
-				size += 1
-				str_index = coordinates[0] - 1
-				char_index = coordinates[1]
-				coordinates = [str_index, char_index]
-				new_list_coordinates.append
+				if above == 9:
+					pass
+				else:
+					size += 1
+					str_index = coordinates[0] - 1
+					char_index = coordinates[1]
+					coordinate = [str_index, char_index]
+					list_of_dupes.append(coordinate)
+					new_list_coordinates.append(coordinate)
 			
-			if below == 9:
+			if below in list_of_dupes:
 				pass
-			else:
-				size += 1
-				str_index = coordinates[0] + 1
-				char_index = coordinates[1]
-				coordinates = [str_index, char_index]
-				new_list_coordinates.append
-			
-			if prior == 9:
+			else:	
+				if below == 9:
+					pass
+				else:
+					size += 1
+					str_index = coordinates[0] + 1
+					char_index = coordinates[1]
+					coordinate = [str_index, char_index]
+					list_of_dupes.append(coordinate)
+					new_list_coordinates.append(coordinate)
+
+			if prior in list_of_dupes:
 				pass
-			else:
-				size += 1
-				str_index = coordinates[0]
-				char_index = coordinates[1] - 1
-				coordinates = [str_index, char_index]
-				new_list_coordinates.append
-			
-			if after == 9:
+			else:	
+				if prior == 9:
+					pass
+				else:
+					size += 1
+					str_index = coordinates[0]
+					char_index = coordinates[1] - 1
+					coordinate = [str_index, char_index]
+					list_of_dupes.append(coordinate)
+					new_list_coordinates.append(coordinate)
+
+			if after in list_of_dupes:
 				pass
-			else:
-				size += 1
-				str_index = coordinates[0]
-				char_index = coordinates[1] + 1
-				coordinates = [str_index, char_index]
-				new_list_coordinates.append
+			else:	
+				if after == 9:
+					pass
+				else:
+					size += 1
+					str_index = coordinates[0]
+					char_index = coordinates[1] + 1
+					coordinate = [str_index, char_index]
+					list_of_dupes.append(coordinate)
+					new_list_coordinates.append(coordinate)
 		
 		return basin(list_of_strings, new_list_coordinates, list_of_dupes, size)
+	
 def smoke(txtfile):
 	input_file = open(txtfile, "r")
 	input_strings = input_file.read()
 	string_list = input_strings.split("\n")
 	number_of_strings = len(string_list)
-	
+	basin_sizes = []
 
 	for string in string_list:
 		previous_id = string_list.index(string) - 1
@@ -65,17 +82,31 @@ def smoke(txtfile):
 					if int(digit) < int(string[i-1]) and int(digit) < int(string[i+1]) and int(digit) < int(next_string[i]):
 						string_index = string_list.index(string)
 						character_index = string.index(digit)
-						coordinates = [[string_index, character_index]]
-						basin_size = 
-            
+						lowcoordinates = [[string_index, character_index]]
+						duplicates = []
+						size = 0
+						basin_size = basin(string_list, lowcoordinates, duplicates, size)
+						basin_sizes.append(basin_size)
 				except IndexError:
 					try:
 						if int(digit) < int(string[i+1]) and int(digit) < int(next_string[i]):
-							risk_level += int(digit) + 1
+							string_index = string_list.index(string)
+							character_index = string.index(digit)
+							lowcoordinates = [[string_index, character_index]]
+							duplicates = []
+							size = 0
+							basin_size = basin(string_list, lowcoordinates, duplicates, size)
+							basin_sizes.append(basin_size)
 					except IndexError:
 						try:
 							if int(digit) < int(string[i-1]) and int(digit) < int(next_string[i]):
-								risk_level += int(digit) + 1
+								string_index = string_list.index(string)
+								character_index = string.index(digit)
+								lowcoordinates = [[string_index, character_index]]
+								duplicates = []
+								size = 0
+								basin_size = basin(string_list, lowcoordinates, duplicates, size)
+								basin_sizes.append(basin_size)
 						except IndexError:
 							pass
 
@@ -84,15 +115,33 @@ def smoke(txtfile):
 			for i, digit in enumerate(string):
 				try:
 					if int(digit) < int(previous_string[i]) and int(digit) < int(string[i-1]) and int(digit) < int(string[i+1]):
-						risk_level += int(digit) + 1
+						string_index = string_list.index(string)
+						character_index = string.index(digit)
+						lowcoordinates = [[string_index, character_index]]
+						duplicates = []
+						size = 0
+						basin_size = basin(string_list, lowcoordinates, duplicates, size)
+						basin_sizes.append(basin_size)
 				except IndexError:
 					try:
 						if int(digit) < int(previous_string[i]) and int(digit) < int(string[i+1]):
-							risk_level += int(digit) + 1
+							string_index = string_list.index(string)
+							character_index = string.index(digit)
+							lowcoordinates = [[string_index, character_index]]
+							duplicates = []
+							size = 0
+							basin_size = basin(string_list, lowcoordinates, duplicates, size)
+							basin_sizes.append(basin_size)
 					except IndexError:
 						try:
 							if int(digit) < int(previous_string[i]) and int(digit) < int(string[i-1]):
-								risk_level += int(digit) + 1
+								string_index = string_list.index(string)
+								character_index = string.index(digit)
+								lowcoordinates = [[string_index, character_index]]
+								duplicates = []
+								size = 0
+								basin_size = basin(string_list, lowcoordinates, duplicates, size)
+								basin_sizes.append(basin_size)
 						except IndexError:
 							pass
 		
@@ -102,18 +151,36 @@ def smoke(txtfile):
 			for i, digit in enumerate(string):
 				try:
 					if int(digit) < int(previous_string[i]) and int(digit) < int(string[i-1]) and int(digit) < int(string[i+1]) and int(digit) < int(next_string[i]):
-						risk_level += int(digit) + 1
+						string_index = string_list.index(string)
+						character_index = string.index(digit)
+						lowcoordinates = [[string_index, character_index]]
+						duplicates = []
+						size = 0
+						basin_size = basin(string_list, lowcoordinates, duplicates, size)
+						basin_sizes.append(basin_size)
 				except IndexError:
 					try:
 						if int(digit) < int(previous_string[i]) and int(digit) < int(string[i+1]) and int(digit) < int(next_string[i]):
-							risk_level += int(digit) + 1
+							string_index = string_list.index(string)
+							character_index = string.index(digit)
+							lowcoordinates = [[string_index, character_index]]
+							duplicates = []
+							size = 0
+							basin_size = basin(string_list, lowcoordinates, duplicates, size)
+							basin_sizes.append(basin_size)
 					except IndexError:
 						try:
 							if int(digit) < int(previous_string[i]) and int(digit) < int(string[i-1]) and int(digit) < int(next_string[i]):
-								risk_level += int(digit) + 1
+								string_index = string_list.index(string)
+								character_index = string.index(digit)
+								lowcoordinates = [[string_index, character_index]]
+								duplicates = []
+								size = 0
+								basin_size = basin(string_list, lowcoordinates, duplicates, size)
+								basin_sizes.append(basin_size)
 						except IndexError:
 							pass
-	print("Risk level: ", risk_level)
-	return risk_level
+	print("Basin Sizes: ", basin_sizes)
+	return basin_sizes
 
 smoke("input.txt")
