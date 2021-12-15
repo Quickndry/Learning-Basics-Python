@@ -12,7 +12,6 @@ def stringsplitter(txtfile):
   coordinates_and_instructions = []
   coordinates_and_instructions.append(list_of_coordinates)
   coordinates_and_instructions.append(list_of_instructions)
-#  print("Coordinate lst: ", list_of_coordinates, "Instruction lst: ", list_of_instructions)
   return coordinates_and_instructions
 
 def fold_action(coordinate_lst, fold_instructions):
