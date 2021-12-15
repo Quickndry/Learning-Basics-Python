@@ -44,13 +44,37 @@ def fold_action(coordinate_lst, fold_instructions):
             newcoordinate_lst.append(newcoordinate)
   
     newfold_instructions = fold_instructions[1:]
-    print("Number of coordinates: ", len(newcoordinate_lst))
     return fold_action(newcoordinate_lst, newfold_instructions)
 
   else:
-    number_of_dots = len(coordinate_lst)
-    print("Number of coordinates: ", number_of_dots)
-    return number_of_dots
+    return coordinate_lst
+
+def final_origami(final_coordinates):
+  sortby_x = final_coordinates.sort(reverse=True)
+  reverse_coordinates = [x.reverse() for x in final_coordinates]
+  sortby_y = reverse_coordinates.sort(reverse=True)
+  length_of_string = int(sortby_x[0][0])
+  number_of_strings = int(sortby_y[0][0])
+  newstring = "." * length_of_string
+  newstring_as_lst = newstring.split("")
+  field = []
+  finalfield = []
+
+  for i in range(number_of_strings):
+    field.append(newstring_as_lst)
+  
+  for coordinates in final_coordinates:
+    field[int(coordinates[1])][int(coordinates[0])] = ["X"]
+
+  for lines in field:
+    line = "".join(lines)
+    finalfield.append(line)
+  
+  finalfield_str = "\n".join(finalfield)
+
+  
+
 
 workinglist = stringsplitter("input.txt")
-fold_action(workinglist[0], workinglist[1])
+point_coordinates = fold_action(workinglist[0], workinglist[1])
+final_origami(point_coordinates)
