@@ -48,7 +48,7 @@ def fold_action(coordinate_lst, fold_instructions):
     return fold_action(newcoordinate_lst, newfold_instructions)
 
   else:
-    number_of_dots = len(newcoordinate_lst)
+    number_of_dots = len(coordinate_lst)
     print("Number of coordinates: ", number_of_dots)
     return number_of_dots
 
