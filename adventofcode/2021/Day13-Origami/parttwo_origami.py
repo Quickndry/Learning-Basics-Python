@@ -16,7 +16,6 @@ def stringsplitter(txtfile):
   coordinates_and_instructions = []
   coordinates_and_instructions.append(list_of_coordinates_int)
   coordinates_and_instructions.append(list_of_instructions)
-  print("Coo and Inst: ", coordinates_and_instructions)
   return coordinates_and_instructions
 
 def fold_action(coordinate_lst, fold_instructions):
@@ -52,32 +51,27 @@ def fold_action(coordinate_lst, fold_instructions):
     return fold_action(newcoordinate_lst, newfold_instructions)
 
   else:
-    print("\nCoordinate List: ", coordinate_lst)
     return coordinate_lst
 
 def final_origami(final_coordinates):
   reverse_coordinates = [x[::-1] for x in final_coordinates]
-# print("reve: ", reverse_coordinates)
   final_coordinates.sort(reverse=True)
   reverse_coordinates.sort(reverse=True)
-#  print("Sortbyx: ", final_coordinates, "\nSortbyy: ", final_coordinates)
   length_of_string = int(final_coordinates[0][0]) + 1
   number_of_strings = int(reverse_coordinates[0][0]) + 1
-  newstring = ". " * length_of_string
-  newstring_as_lst = newstring.split(" ")
+
   field = []
   finalfield = []
 
-#  print("Y length: ", number_of_strings, "\nX length: ", length_of_string)
   for i in range(number_of_strings):
+    newstring = ". " * length_of_string
+    newstring_as_lst = newstring.split(" ")
     field.append(newstring_as_lst)
   
   for coordinates in final_coordinates:
-#    print("Coordinates: ", coordinates)
     field[int(coordinates[1])][int(coordinates[0])] = "X"
 
   for lines in field:
- #   print("Line: ", lines)
     line = "".join(lines)
     finalfield.append(line)
   
