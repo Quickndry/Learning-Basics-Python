@@ -1,4 +1,4 @@
-def smoke(txtfile):
+def sevenseg(txtfile):
   input_file = open(txtfile, "r")
   input_strings = input_file.read()
   string_list = input_strings.split("\n")
@@ -16,4 +16,4 @@ def smoke(txtfile):
   
   print("Number of specific digits: ", counter)
   
-smoke("input.txt")
+sevenseg("input.txt")
