@@ -39,12 +39,7 @@ def is_interesting(number, awesome_phrases):
 				sta_decremental = False
 
 		except IndexError:
-			if len(mile_list) == 1:
-				sta_decremental = False
-				sta_incremental = False
-				sta_zeroes = False
-				sta_allsame = False
-				sta_palindrome = False
+			pass
 
 	# Palindrome check
 	if (len(mile_list) % 2) != 0:
@@ -100,12 +95,7 @@ def is_interesting(number, awesome_phrases):
 				sta_decremental = False
 
 		except IndexError:
-			if len(next_mile_list) == 1:
-				sta_decremental = False
-				sta_incremental = False
-				sta_zeroes = False
-				sta_allsame = False
-				sta_palindrome = False
+			pass
 
 	# Palindrome check
 	if (len(mile_list) % 2) != 0:
@@ -161,12 +151,7 @@ def is_interesting(number, awesome_phrases):
 				sta_decremental = False
 
 		except IndexError:
-			if len(snext_mile_list) == 1:
-				sta_decremental = False
-				sta_incremental = False
-				sta_zeroes = False
-				sta_allsame = False
-				sta_palindrome = False
+			pass
 
 	# Palindrome check
 	if (len(snext_mile_list) % 2) != 0:
