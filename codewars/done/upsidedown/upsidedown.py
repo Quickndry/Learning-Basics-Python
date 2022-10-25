@@ -5,8 +5,9 @@ def solve(a, b):
             pass 
         else:
             if len(str(digit)) > 1:
+                reverse_digit = str(digit)[::-1]
                 converted = []
-                for x in str(digit):
+                for x in str(reverse_digit):
                     match x:
                         case "0":
                             converted.append("0")
@@ -20,6 +21,7 @@ def solve(a, b):
                             converted.append("6")
                 converted_digit = "".join(converted)
                 if int(converted_digit) == digit:
+                    print(converted_digit)
                     counter += 1
 
             else:
