@@ -1,0 +1,9 @@
+y = int(years)
+ye = "years" if years > 1 else "year"
+d = int(days)
+da = "days" if days > 1 else "day"
+ho = "hours" if hours > 1 else "hour"
+mi = int(minutes_r)
+min = "minutes" if minutes > 1 else "minute"
+s = int(seconds_r)
+ss = "seconds" if seconds > 1 else "second"
