@@ -3,11 +3,9 @@ def format_duration(seconds):
     hours = minutes / 60
     days = hours / 24
     years = days / 365
+    
     if seconds == 0:
         return "now"
-
-# one return has a seconds that it should not return
-# round up floats in return statement, instead of int()
 
     if years < 1:
         if days < 1:
