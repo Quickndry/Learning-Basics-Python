@@ -1,3 +1,16 @@
+# Steps to find all possible combinations of coins that add up to the given change:
+# Create a recursive function that loops through coins and substracts each from the change.
+# If the change is 0, add combination to a combination list, so that duplicates can be
+# filtered out. If change is negative, combination is discounted. If change is positive,
+# function recurses over itself. 
+# Function returns the combinations collected and adds them to a final combination list
+# before checking the list for duplicates and returning the list without them. 
+# A second function returns the number of combinations.
+
+# Ineffeciencies:
+# Memory -> Duplicates are all recorded in a list and only checked afterwards.
+# All combinations are calculated manually.
+
 import itertools
 
 def find_combo(change, coins, combination, combinations):
