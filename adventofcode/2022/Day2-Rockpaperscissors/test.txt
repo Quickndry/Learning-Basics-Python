@@ -1,0 +1,5 @@
+A Y stone paper = 2 6 = 8
+B X paper stone = 1 0 = 1
+C Z scissor scissor = 3 3 = 6
+
+8 6 1 = 15
