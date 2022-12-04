@@ -40,10 +40,8 @@ def find_badge(inputfile):
     first_pos = 0
     last_pos = []
     for digit in range(3, listlength, 3):
-        print("Digit: ", digit)
         last_pos.append(digit)
     for pos in last_pos:
-        print("Beginloop: ", first_pos)
         current = lines[first_pos:pos]
         sanitized_line = current[0].replace("\n", "")
         double_letters = []
@@ -51,15 +49,7 @@ def find_badge(inputfile):
             if letter in current[1] and letter in current[2] and letter not in double_letters:
                 sum += 1 + a_combined.index(letter)
                 double_letters.append(letter)
-                print("Sum: ", sum)
         first_pos = pos
-        print("Endloop", first_pos)
     return sum
-
-
-
-
-
-
 
 print(find_badge("input.txt"))
