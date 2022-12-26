@@ -21,11 +21,7 @@ def sort_rucksack(inputfile):
                 try:
                     sum += 1 + alc.index(buchstabe)
                 except ValueError:
-                    pass
-                try:
                     sum += 27 + auc.index(buchstabe)
-                except ValueError:
-                    pass
     return sum
 
 # Part 2 ------------------------------------------------------------------------

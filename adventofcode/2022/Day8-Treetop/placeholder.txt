@@ -1,0 +1,198 @@
+Number of rows:  5 
+Number of ss:  6
+
+Row ID:  0
+Visible Trees:  7
+
+Row ID:  1
+
+Tree height:  2
+Visible Trees:  8
+
+Tree height:  2
+Pre:  ['2']
+After:  ['2', '2', '5', '3', '1']
+COL Pre:  ['2']
+treerow[it]:  2
+IT:  1
+COL After:  ['2', '3', '3', '4']
+treerow[it]:  2
+IT:  1
+Tree not visible
+
+Tree height:  2
+Pre:  ['2', '2']
+After:  ['2', '5', '3', '1']
+COL Pre:  ['2']
+treerow[it]:  2
+IT:  2
+COL After:  ['3', '3', '7', '7']
+treerow[it]:  3
+IT:  2
+Tree not visible
+
+Tree height:  2
+Pre:  ['2', '2', '2']
+After:  ['5', '3', '1']
+COL Pre:  ['2']
+treerow[it]:  2
+IT:  3
+COL After:  ['2', '2', '6', '9']
+treerow[it]:  2
+IT:  3
+Tree not visible
+
+Tree height:  5
+Pre:  ['2', '2', '2', '2']
+Visible Trees:  9
+
+Tree height:  3
+Pre:  ['2', '2', '2', '2', '5']
+After:  ['1']
+Visible Trees:  10
+
+Tree height:  1
+Visible Trees:  11
+
+Row ID:  2
+
+Tree height:  2
+Visible Trees:  12
+
+Tree height:  2
+Pre:  ['2']
+After:  ['3', '2', '5', '3', '2']
+COL Pre:  ['2', '2']
+treerow[it]:  2
+IT:  1
+COL After:  ['3', '3', '4']
+treerow[it]:  3
+IT:  1
+Tree not visible
+
+Tree height:  3
+Pre:  ['2', '2']
+Visible Trees:  13
+
+Tree height:  2
+Pre:  ['2', '2', '3']
+After:  ['5', '3', '2']
+COL Pre:  ['2', '2']
+treerow[it]:  2
+IT:  3
+COL After:  ['2', '6', '9']
+treerow[it]:  2
+IT:  3
+Tree not visible
+
+Tree height:  5
+Pre:  ['2', '2', '3', '2']
+Visible Trees:  14
+
+Tree height:  3
+Pre:  ['2', '2', '3', '2', '5']
+After:  ['2']
+Visible Trees:  15
+
+Tree height:  2
+Visible Trees:  16
+
+Row ID:  3
+
+Tree height:  2
+Visible Trees:  17
+
+Tree height:  3
+Pre:  ['2']
+Visible Trees:  18
+
+Tree height:  3
+Pre:  ['2', '3']
+After:  ['2', '5', '3', '3']
+COL Pre:  ['2', '2', '3']
+treerow[it]:  3
+IT:  2
+COL After:  ['7', '7']
+treerow[it]:  7
+IT:  2
+Tree not visible
+
+Tree height:  2
+Pre:  ['2', '3', '3']
+After:  ['5', '3', '3']
+COL Pre:  ['2', '2', '2']
+treerow[it]:  2
+IT:  3
+COL After:  ['6', '9']
+treerow[it]:  6
+IT:  3
+Tree not visible
+
+Tree height:  5
+Pre:  ['2', '3', '3', '2']
+Visible Trees:  19
+
+Tree height:  3
+Pre:  ['2', '3', '3', '2', '5']
+After:  ['3']
+COL Pre:  ['3', '3', '3']
+treerow[it]:  3
+IT:  5
+COL After:  ['7', '7']
+treerow[it]:  7 
+IT:  5
+Tree not visible
+
+Tree height:  3
+Visible Trees:  20
+
+Row ID:  4
+
+Tree height:  4
+Visible Trees:  21
+
+Tree height:  3
+Pre:  ['4']
+After:  ['7', '6', '4', '7', '3']
+COL Pre:  ['2', '2', '2', '3']
+treerow[it]:  3
+IT:  1
+COL After:  ['4']
+treerow[it]:  4
+IT:  1
+Tree not visible
+
+Tree height:  7
+Pre:  ['4', '3']
+Visible Trees:  22
+
+Tree height:  6
+Pre:  ['4', '3', '7']
+After:  ['4', '7', '3']
+COL Pre:  ['2', '2', '2', '2']
+COL After:  ['9']
+treerow[it]:  9
+IT:  3
+Tree not visible
+
+Tree height:  4
+Pre:  ['4', '3', '7', '6']
+After:  ['7', '3']
+COL Pre:  ['5', '5', '5', '5']
+treerow[it]:  5
+IT:  4
+COL After:  ['4']
+treerow[it]:  4
+IT:  4
+Tree not visible
+
+Tree height:  7
+Pre:  ['4', '3', '7', '6', '4']
+After:  ['3']
+Visible Trees:  23
+
+Tree height:  3
+Visible Trees:  24
+
+Row ID:  5
+Visible Trees:  31
