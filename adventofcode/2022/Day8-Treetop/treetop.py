@@ -83,7 +83,6 @@ def finddistance(tree, col_or_row):
             return distance
     return distance
 
-
 def parttwo(inputfile):
     with open(inputfile, 'r') as file:
         fstring = file.read()
@@ -102,80 +101,9 @@ def parttwo(inputfile):
             bef_col = [x[it] for x in rows[:ir]]
             aft_col = [x[it] for x in rows[ir+1:]]
             bef_col.reverse()
-#            print("Bef row: ", bef_row, "Aft row: ", aft_row, "Bef col: ", bef_col, "Aft col: ", aft_col)
 
-            if ir == 0 and it == 0:
-                brdist = 0
-                ardist = finddistance(tree, aft_row)
-                bcdist = 0
-                acdist = finddistance(tree, aft_col)
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-            
-            elif ir == 0 and it == rowlength:
-                brdist = finddistance(tree, bef_row)
-                ardist = 0
-                bcdist = 0
-                acdist = finddistance(tree, aft_col)
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif ir == columnlength and it == 0:
-                brdist = 0
-                ardist = finddistance(tree, aft_row)
-                bcdist = finddistance(tree, bef_col)
-                acdist = 0
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif ir == columnlength and it == rowlength:
-                brdist = finddistance(tree, bef_row)
-                ardist = 0
-                bcdist = finddistance(tree, bef_col)
-                acdist = 0
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif ir == 0:
-                brdist = finddistance(tree, bef_row)
-                ardist = finddistance(tree, aft_row)
-                bcdist = 0
-                acdist = finddistance(tree, aft_col)
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif ir == columnlength:
-                brdist = finddistance(tree, bef_row)
-                ardist = finddistance(tree, aft_row)
-                bcdist = finddistance(tree, bef_col)
-                acdist = 0
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif it == 0:
-                brdist = 0
-                ardist = finddistance(tree, aft_row)
-                bcdist = finddistance(tree, bef_col)
-                acdist = finddistance(tree, aft_col)
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
-            elif it == rowlength:
-                brdist = finddistance(tree, bef_row)
-                ardist = 0
-                bcdist = finddistance(tree, bef_col)
-                acdist = finddistance(tree, aft_col)
-                scenic_score = bcdist * brdist * acdist * ardist
-                scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
+            if ir == 0 or ir == rowlength or it == columnlength or it == 0:
+                pass
             else:
                 brdist = finddistance(tree, bef_row)
                 ardist = finddistance(tree, aft_row)
@@ -183,8 +111,6 @@ def parttwo(inputfile):
                 acdist = finddistance(tree, aft_col)
                 scenic_score = bcdist * brdist * acdist * ardist
                 scenic_scores.append(scenic_score)
-                print("Row: ", ir, "Col: ", it, "Tree: ", tree, "Score: ", scenic_score)
-
 
     print("Max scene: ", max(scenic_scores))
 
