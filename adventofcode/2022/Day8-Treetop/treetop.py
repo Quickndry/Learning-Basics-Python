@@ -115,5 +115,5 @@ def parttwo(inputfile):
     print("Max scene: ", max(scenic_scores))
 
 #partone("input.txt")
-parttwo("input.txt")
+#parttwo("input.txt")
 
